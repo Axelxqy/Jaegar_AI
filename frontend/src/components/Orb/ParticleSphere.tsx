@@ -3,11 +3,70 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import type { Particle } from "./Types.ts";
 
-const particleCount = 500;
-const sphereRadius = 1.2;
+const particleCount = 750;
+const sphereRadius = 2;
+
+//Particle Texture
+function createParticleTexture() {
+    const canvas = document.createElement("canvas");
+
+    canvas.width = 64;
+    canvas.height = 64;
+
+    //Get 2D tools
+    const context = canvas.getContext("2d");
+
+    if (!context) {
+        throw new Error("Could not render 2D canvas context")
+    }
+
+    const center = 32;
+
+    //Set Gradient starting from in towards out
+    const gradient = context.createRadialGradient(
+        center,
+        center,
+        0,
+        center,
+        center,
+        32
+    );
+
+    //Color of Gradient
+    gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
+    gradient.addColorStop(0.15, "rgba(255, 255, 255, 0.95)");
+    gradient.addColorStop(0.35, "rgba(255, 255, 255, 0.35)");
+    gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, 64, 64);
+
+    //Draw Star Rays
+    context.strokeStyle = "white";
+    context.lineWidth = 2;
+
+    context.beginPath();
+
+    //Vertical Ray
+    context.moveTo(center, 4);
+    context.lineTo(center, 60);
+
+    //Horizontal Ray
+    context.moveTo(4, center);
+    context.lineTo(60, center);
+
+    context.stroke();
+
+    //Convert into THREE.js texture
+    return new THREE.CanvasTexture(canvas);
+}
 
 export default function ParticleSphere() {
     const pointsRef = useRef < THREE.Points | null > (null);
+
+    const starTexture = useMemo(() => {
+        return createParticleTexture();
+    }, []);
 
     const { geometry, particles } = useMemo(() => {
         const particles: Particle[] = [];
@@ -110,12 +169,14 @@ export default function ParticleSphere() {
         >
             <pointsMaterial
                 color = "#ffffff"
-                size = {0.035}
+                size = {0.1}
                 sizeAttenuation
                 transparent
                 opacity = {0.9}
                 depthWrite = {false}
                 blending = {THREE.AdditiveBlending}
+                map = {starTexture}
+                alphaTest = {0.01}
             />
         </points>
     );
