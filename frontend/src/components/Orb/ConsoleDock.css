@@ -1,0 +1,65 @@
+.console-dock {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.console-header {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid #1d1d1d;
+    flex-shrink: 0;
+}
+
+.console-title {
+    font-family: monospace;
+    font-size: 10px;
+    letter-spacing: 0.05cm;
+    color: #777;
+}
+
+.console-log {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 12px 10px;
+}
+
+.user-log,
+.agent-log {
+    font-family: monospace;
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.log-speaker {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 9px;
+    letter-spacing: 0.05cm;
+}
+
+.log-message {
+    display: block;
+    color: #aaa;
+}
+
+.user-log .log-speaker {
+    color: #777;
+}
+
+.user-log .log-message {
+    color: #999
+}
+
+.agent-log .log-speaker {
+    color: #aaa;
+}
+
+.agent-log .log-message {
+    color: #c5c5c5;
+}

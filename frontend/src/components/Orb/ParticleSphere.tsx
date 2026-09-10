@@ -42,19 +42,27 @@ function createParticleTexture() {
     context.fillRect(0, 0, 64, 64);
 
     //Draw Star Rays
-    context.strokeStyle = "white";
     context.lineWidth = 2;
 
-    context.beginPath();
-
     //Vertical Ray
+    context.strokeStyle = "rgb(255, 255, 255)";
+    context.beginPath();
     context.moveTo(center, 4);
     context.lineTo(center, 60);
+    context.stroke();
 
-    //Horizontal Ray
+    //Left Horizontal Ray
+    context.strokeStyle = "rgb(255, 255, 255)";
+    context.beginPath();
     context.moveTo(4, center);
-    context.lineTo(60, center);
+    context.lineTo(center, center);
+    context.stroke();
 
+    //Right Horizontal Ray
+    context.strokeStyle = "rgb(255, 255, 255)";
+    context.beginPath();
+    context.moveTo(center, center);
+    context.lineTo(60, center)
     context.stroke();
 
     //Convert into THREE.js texture

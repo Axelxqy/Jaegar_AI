@@ -1,8 +1,13 @@
+import "./OrbStatus.css"
+
 function OrbStatus() {
     return (
-        <div></div>
-    )
-
+        <div className="orb-status">
+            <span className="status-text">
+                Listening...
+            </span>
+        </div>
+    );
 }
 
 export default OrbStatus;

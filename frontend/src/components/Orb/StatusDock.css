@@ -1,0 +1,67 @@
+.status-dock {
+    width: 100%;
+
+    border-bottom: 1px solid #2d2d2d;
+
+    flex-shrink: 0;
+}
+
+.status-dock-header {
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 10px;
+
+    box-sizing: border-box;
+}
+
+.status-dock-title {
+    font-family: monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+
+    color: #777;
+}
+
+.status-dock-toggle {
+    border: none;
+    background: none;
+
+    padding: 0;
+
+    color: #666;
+
+    font-family: monospace;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.status-dock-toggle:hover {
+    color: #aaa;
+}
+
+.status-dock-content {
+    padding: 6px 10px 10px;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 5px;
+
+    font-family: monospace;
+    font-size: 11px;
+}
+
+.status-label {
+    color: #555;
+}
+
+.status-value {
+    color: #999;
+}

@@ -1,0 +1,32 @@
+.orb-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 12px;
+}
+
+.status-text {
+    position: relative;
+    left: 0px;
+    top: -50px;
+    font-family: monospace;
+    font-size: 15px;
+    color: #d0d0d0;
+
+    white-space: nowrap;
+    animation: statusFade 2.8s ease-in-out infinite;
+}
+
+@keyframes statusFade {
+    0%, 100% {
+        opacity: 0.30;
+    }
+
+    50% {
+        opacity: 0.75;
+    }
+}
+
+
+
