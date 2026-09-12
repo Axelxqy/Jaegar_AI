@@ -1,6 +1,11 @@
+import type { ConversationMessage } from "../../layouts/mainLayout"
 import "./ConsoleDock.css"
 
-function ConsoleDock() {
+interface ConsoleDockProps {
+    messages: ConversationMessage[];
+}
+
+function ConsoleDock({ messages }: ConsoleDockProps) {
     return (
         <div className="console-dock">
             <div className="console-header">
@@ -10,25 +15,22 @@ function ConsoleDock() {
             </div>
 
             <div className="console-log">
-                <div className="user-log">
-                    <span className="log-speaker">
-                        YOU
-                    </span>
+                {messages.map((message, index) => (
 
-                    <span className="log-message">
-                        Hello Jaegar.
-                    </span>
-                </div>
-                
-                <div className="agent-log">
-                    <span className="log-speaker">
-                        JAEGAR
-                    </span>
+                    <div className = {
+                        message.sender === "user" ? "user-log":"agent-log"
+                    } 
+                    key = {index}
+                    >
+                        <span className = "log-speaker">
+                            {message.sender === "user" ? "USER":"JAEGAR"}
+                        </span>
 
-                    <span className="log-message">
-                        Hello, How can I help you?
-                    </span>
-                </div>
+                        <span className = "log-message">
+                            {message.text}
+                        </span>
+                    </div>
+                ))}
             </div>
         </div>
     )

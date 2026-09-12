@@ -10,3 +10,8 @@ export interface Particle {
     size: number;
     brightness: number;
 }
+
+export interface ConversationMessage {
+    sender: "user" | "agent";
+    text: string;
+}

@@ -1,11 +1,37 @@
+import { useState } from "react";
 import "./mainLayout.css";
+
 import Orb from "../components/Orb/Orb"
 import StatusDock from "../components/Orb/StatusDock"
 import OrbStatus from "../components/Orb/OrbStatus"
 import ConsoleDock from "../components/Orb/ConsoleDock"
 import InputBar from "../components/Orb/InputBar"
 
+export interface ConversationMessage {
+    sender: "user" | "agent";
+    text: string;
+}
+
 function MainLayout() {
+    // Messaging (Inout) Function
+    const [messages, setMessages] = useState<ConversationMessage[]>([]);
+
+    function handleSendMessage(text: string) {
+        if (!text.trim()) {
+            return;
+        }
+
+        const newMessage: ConversationMessage = {
+            sender:"user",
+            text: text,
+        };
+
+        setMessages((currentMessages) => [
+            ...currentMessages,
+            newMessage,
+        ])
+    }
+
     return (
         <div className="app">
             
@@ -21,7 +47,7 @@ function MainLayout() {
                     
                     <StatusDock />
 
-                    <ConsoleDock />
+                    <ConsoleDock messages={messages} />
 
                 </div>
 
@@ -29,7 +55,7 @@ function MainLayout() {
 
             <div className="input-panel">
                 
-                <InputBar />
+                <InputBar onSendMessage={handleSendMessage} />
 
             </div>
         
