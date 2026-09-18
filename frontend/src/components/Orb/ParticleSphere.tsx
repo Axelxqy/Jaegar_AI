@@ -1,7 +1,7 @@
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import type { Particle } from "./Types.ts";
+import type { Particle } from "../../types/OrbTypes.ts";
 
 const particleCount = 750;
 const sphereRadius = 2;
