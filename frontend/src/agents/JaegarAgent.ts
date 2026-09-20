@@ -1,6 +1,11 @@
+import type { AgentResponse } from "../types/AgentResponse";
+
 class JaegarAgent {
-    async respond(message: string): Promise<string> {
-        return "Jaegar received your message.";
+    async respond(message: string): Promise<AgentResponse> {
+        return {
+            message: "Jaegar received your message.",
+            state: "RESPONDING"
+        };
     }
 }
 
