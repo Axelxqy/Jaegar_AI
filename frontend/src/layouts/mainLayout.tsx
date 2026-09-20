@@ -41,7 +41,7 @@ function MainLayout() {
 
         const agentMessage: ConversationMessage = {
             sender: "agent",
-            text: response,
+            text: response.message,
         }
 
         setMessages((currentMessages) => [
