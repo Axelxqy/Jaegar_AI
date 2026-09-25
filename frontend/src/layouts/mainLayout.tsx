@@ -1,7 +1,6 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import "./mainLayout.css";
 
-import JaegaerAgent from "../agents/JaegarAgent"
 import Orb from "../components/Orb/Orb"
 import StatusDock from "../components/Orb/StatusDock"
 import OrbStatus from "../components/Orb/OrbStatus"
@@ -14,8 +13,6 @@ export interface ConversationMessage {
 }
 
 function MainLayout() {
-    // Pull Agent
-    const agent = useRef(new JaegaerAgent()).current;
 
     // Messaging (Inout) Function
     const [messages, setMessages] = useState<ConversationMessage[]>([]);
@@ -36,13 +33,21 @@ function MainLayout() {
             newMessage,
         ]);
 
-        //Aegnt Response
-        const response = await agent.respond(text);
+        //Python Backend Response
+        const response = await fetch("http://127.0.0.1:8000/message", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message: text }),
+        });
+
+        const data = await response.json();
 
         const agentMessage: ConversationMessage = {
             sender: "agent",
-            text: response.message,
-        }
+            text: data.message,
+        };
 
         setMessages((currentMessages) => [
             ...currentMessages,
