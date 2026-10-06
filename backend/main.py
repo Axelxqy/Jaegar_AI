@@ -2,6 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel 
 
+from backend.agentCore.core import JaegarAgent
+
+agent = JaegarAgent()
+
 app = FastAPI()
 
 app.add_middleware(
@@ -21,8 +25,9 @@ def root():
 
 @app.post("/message")
 def message_received(request: MessageRequest):
-    return {"message": f"Received message: {request.message}"}
+    response = agent.respond(request.message)
 
+    return {"message": response}
 
 # if __name__ == "__main__":
 #     main()

@@ -43,7 +43,7 @@ function MainLayout() {
         });
 
         const data = await response.json();
-
+        
         const agentMessage: ConversationMessage = {
             sender: "agent",
             text: data.message,
