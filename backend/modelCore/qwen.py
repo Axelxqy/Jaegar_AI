@@ -8,14 +8,7 @@ class QwenModel(JaegarInterface):
     def __init__(self, model_path: str):
         self.model, self.tokenizer = load(model_path)
 
-    def generate(self, prompt: str) -> str:
-        messages = [
-            {
-                "role": "user",
-                "content": prompt,
-            }
-        ]
-
+    def generate(self, messages: list[dict[str, str]]) -> str:
         prompt_tokens = self.tokenizer.apply_chat_template(
             messages,
             tokenize=True,
@@ -33,4 +26,25 @@ class QwenModel(JaegarInterface):
         ):
             response.append(generation.text)
 
-        return "".join(response)
+        raw_output = "".join(response)
+
+        print("\n===== RAW GENERATION =====")
+        print(repr(raw_output))
+        print("==========================\n")
+
+        # Step 3: Separate the thinking and final answer
+        if "</think>" in raw_output:
+            thinking, answer = raw_output.split("</think>", 1)
+            thinking = thinking.removeprefix("<think>").strip()
+            answer = answer.strip()
+
+            print("===== THINKING =====")
+            print(thinking)
+
+            print("===== FINAL ANSWER =====")
+            print(answer)
+        else:
+            print("No visible thinking separator found.")
+
+
+        return raw_output

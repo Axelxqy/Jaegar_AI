@@ -26,7 +26,7 @@ function InputBar({ onSendMessage }: InputBarProps) {
     }
 
     function handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>) {
-        if (event.key === "Enter" && event.metaKey) {
+        if (event.key === "Enter" && !event.shiftKey) {
             event.preventDefault();
 
             if (!input.trim()) {
