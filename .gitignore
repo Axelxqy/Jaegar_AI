@@ -1,1 +1,18 @@
+# Model files
 models/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+
+# Test and tooling cache
+.pytest_cache/
+.mypy_cache/
+
+# Local runtime databases
+backend/database/*.db
+backend/database/*.db-shm
+backend/database/*.db-wal
