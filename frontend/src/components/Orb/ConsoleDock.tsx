@@ -1,4 +1,4 @@
-import type { ConversationMessage } from "../../layouts/mainLayout"
+import type { ConversationMessage } from "../../types/ConversationMessage";
 import "./ConsoleDock.css"
 
 interface ConsoleDockProps {

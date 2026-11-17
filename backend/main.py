@@ -1,10 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel 
 
 from backend.agentCore.core import JaegarAgent
+from backend.agentInteraction.interactionCore import InteractionCore
 
 agent = JaegarAgent()
+interaction = InteractionCore(agent)
 
 app = FastAPI()
 
@@ -25,9 +27,13 @@ def root():
 
 @app.post("/message")
 def message_received(request: MessageRequest):
-    response = agent.respond(request.message)
+    try:
+        response = interaction.process_message(request.message)
 
-    return {"message": response}
+        return {"message": response}
+
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error))
 
 # if __name__ == "__main__":
 #     main()
