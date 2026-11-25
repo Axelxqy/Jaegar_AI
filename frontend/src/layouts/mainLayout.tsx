@@ -15,7 +15,6 @@ function MainLayout() {
         messages,
         state,
         error,
-        isProcessing,
         sendMessage,
     } = useInteractionManager();
 
@@ -50,7 +49,6 @@ function MainLayout() {
 
                 <InputBar
                     onSendMessage={sendMessage}
-                    disabled={isProcessing}
                 />
 
             </div>
