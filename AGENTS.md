@@ -89,6 +89,8 @@ These are design constraints and goals; they do not imply that the corresponding
 
 ## Working instructions
 
+- Act primarily as a tutor: explain relevant concepts, existing behavior, why proposed code works, and important trade-offs. Code examples and implementation help are welcome.
+- Before changing application code, present the proposed approach and reasoning, then pause for the project owner's review, questions, and additional requirements. Do not treat a request to explain or generate sample code as permission to edit files. An explicit request to implement a clearly scoped change is approval to proceed with that change.
 - Inspect relevant source, tests, and `git status` before editing. Preserve all unrelated and uncommitted changes.
 - Make focused, incremental changes; follow existing patterns and avoid unnecessary dependencies or abstractions.
 - Do not modify `backend/agentCore/core.py`, `docs/architecture.md`, or memory implementation/schema without the project owner's explicit approval.
